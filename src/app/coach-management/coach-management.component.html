@@ -1,0 +1,64 @@
+<div class="d-flex">
+    <app-admin-sidebar></app-admin-sidebar>
+    <div class="main-content p-4 w-100">
+      <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2>Coach Management</h2>
+          <button class="btn btn-primary" (click)="openAddCoachModal()">
+            <i class="fas fa-plus"></i> Add Coach
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Coach Name</th>
+                <th scope="col">Specialty</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let coach of coaches">
+                <td>{{ coach.name }}</td>
+                <td>{{ coach.specialty }}</td>
+                <td>
+                  <button class="btn btn-warning btn-sm me-2" (click)="openEditCoachModal(coach)">
+                    <i class="fas fa-edit"></i> Edit
+                  </button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteCoach(coach)">
+                    <i class="fas fa-trash-alt"></i> Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add/Edit Coach Modal -->
+  <div class="modal fade" id="coachModal" tabindex="-1" aria-labelledby="coachModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="coachModalLabel">{{ editingCoach ? 'Edit Coach' : 'Add Coach' }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="saveCoach()">
+            <div class="mb-3">
+              <label for="coachName" class="form-label">Coach Name</label>
+              <input type="text" class="form-control" id="coachName" [(ngModel)]="coachName" name="coachName" required>
+            </div>
+            <div class="mb-3">
+              <label for="coachSpecialty" class="form-label">Specialty</label>
+              <input type="text" class="form-control" id="coachSpecialty" [(ngModel)]="coachSpecialty" name="coachSpecialty" required>
+            </div>
+            <button type="submit" class="btn btn-primary">{{ editingCoach ? 'Save Changes' : 'Add Coach' }}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

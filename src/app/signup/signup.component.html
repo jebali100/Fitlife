@@ -1,0 +1,52 @@
+<div class="signup-container">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <h2>Sign Up</h2>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input id="firstName" type="text" formControlName="firstName">
+        <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)" class="error">
+          <small *ngIf="firstName?.errors?.['required']">First Name is required.</small>
+          <small *ngIf="firstName?.errors?.['minlength']">First Name must be at least 2 characters long.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input id="lastName" type="text" formControlName="lastName">
+        <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)" class="error">
+          <small *ngIf="lastName?.errors?.['required']">Last Name is required.</small>
+          <small *ngIf="lastName?.errors?.['minlength']">Last Name must be at least 2 characters long.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" type="text" formControlName="username">
+        <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="error">
+          <small *ngIf="username?.errors?.['required']">Username is required.</small>
+          <small *ngIf="username?.errors?.['minlength']">Username must be at least 4 characters long.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password">
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="error">
+          <small *ngIf="password?.errors?.['required']">Password is required.</small>
+          <small *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email">
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error">
+          <small *ngIf="email?.errors?.['required']">Email is required.</small>
+          <small *ngIf="email?.errors?.['email']">Email must be a valid email address.</small>
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+    </form>
+  </div>
+  

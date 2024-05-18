@@ -1,0 +1,44 @@
+<div class="d-flex">
+    <app-admin-sidebar></app-admin-sidebar>
+    <div class="main-content p-4 w-100">
+      <div class="container-fluid">
+        <h2>Order Management</h2>
+        <div class="table-responsive mt-4">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Order Date</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Member First Name</th>
+                <th scope="col">Member Last Name</th>
+                <th scope="col">Order Status</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orders">
+                <td>{{ order.date | date: 'short' }}</td>
+                <td>{{ order.productName }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ order.totalPrice | currency }}</td>
+                <td>{{ order.memberFirstName }}</td>
+                <td>{{ order.memberLastName }}</td>
+                <td>{{ order.status }}</td>
+                <td>
+                  <button class="btn btn-success btn-sm me-2" (click)="validateOrder(order)">
+                    <i class="fas fa-check"></i> Validate
+                  </button>
+                  <button class="btn btn-danger btn-sm" (click)="refuseOrder(order)">
+                    <i class="fas fa-times"></i> Refuse
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

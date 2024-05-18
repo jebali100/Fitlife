@@ -1,0 +1,60 @@
+<div class="d-flex">
+  <app-sidebar></app-sidebar>
+  <div class="main-content p-4 w-100">
+    <div class="container-fluid">
+      <div class="row mb-4">
+        <div class="col">
+          <h1 class="display-4 text-center">Rooms Management</h1>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col text-end">
+          <button class="btn btn-success" (click)="openAddRoomModal()">
+            <i class="fas fa-plus me-2"></i> Add Room
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4" *ngFor="let room of rooms">
+          <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">{{ room.name }}</h5>
+              <button class="btn btn-warning w-100 mb-2" (click)="openEditRoomModal(room)">
+                <i class="fas fa-edit me-2"></i> Edit Room
+              </button>
+              <button class="btn btn-danger w-100 mb-2" (click)="deleteRoom(room)">
+                <i class="fas fa-trash me-2"></i> Delete Room
+              </button>
+              <a class="btn btn-info w-100" [routerLink]="['/admin-list']">
+                <i class="fas fa-users me-2"></i> View Admins
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add/Edit Room Modal -->
+<div class="modal fade" id="roomModal" tabindex="-1" aria-labelledby="roomModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="roomModalLabel">{{ editingRoom ? 'Edit Room' : 'Add Room' }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="saveRoom()">
+          <div class="mb-3">
+            <label for="roomName" class="form-label">Room Name</label>
+            <input type="text" class="form-control" id="roomName" [(ngModel)]="roomName" name="roomName">
+          </div>
+          <button type="submit" class="btn btn-primary">{{ editingRoom ? 'Save Changes' : 'Add' }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

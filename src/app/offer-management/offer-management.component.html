@@ -1,0 +1,64 @@
+<div class="d-flex">
+    <app-admin-sidebar></app-admin-sidebar>
+    <div class="main-content p-4 w-100">
+      <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2>Offer Management</h2>
+          <button class="btn btn-primary" (click)="openAddOfferModal()">
+            <i class="fas fa-plus"></i> Add Offer
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Offer Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let offer of offers">
+                <td>{{ offer.title }}</td>
+                <td>{{ offer.description }}</td>
+                <td>
+                  <button class="btn btn-warning btn-sm me-2" (click)="openEditOfferModal(offer)">
+                    <i class="fas fa-edit"></i> Edit
+                  </button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteOffer(offer)">
+                    <i class="fas fa-trash-alt"></i> Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add/Edit Offer Modal -->
+  <div class="modal fade" id="offerModal" tabindex="-1" aria-labelledby="offerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="offerModalLabel">{{ editingOffer ? 'Edit Offer' : 'Add Offer' }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="saveOffer()">
+            <div class="mb-3">
+              <label for="offerTitle" class="form-label">Offer Title</label>
+              <input type="text" class="form-control" id="offerTitle" [(ngModel)]="offerTitle" name="offerTitle" required>
+            </div>
+            <div class="mb-3">
+              <label for="offerDescription" class="form-label">Description</label>
+              <textarea class="form-control" id="offerDescription" [(ngModel)]="offerDescription" name="offerDescription" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">{{ editingOffer ? 'Save Changes' : 'Add Offer' }}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

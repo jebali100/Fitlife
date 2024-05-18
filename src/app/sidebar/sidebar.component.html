@@ -1,0 +1,36 @@
+<nav class="sidebar bg-dark text-white vh-100 p-3">
+  <div class="d-flex flex-column align-items-center">
+    <img src="assets/images/logo.png" alt="Logo" class="img-fluid mb-4" style="max-height: 50px;">
+    <ul class="nav flex-column w-100">
+      <li class="nav-item" *ngFor="let room of rooms">
+        <a class="nav-link text-white d-flex justify-content-between align-items-center" [routerLink]="['/admin-list']">
+          <i class="fas fa-dumbbell me-2"></i> {{ room.name }}
+        </a>
+      </li>
+    </ul>
+    <button class="btn btn-primary mt-4 w-100" (click)="openAddRoomModal()">
+      <i class="fas fa-plus me-2"></i> Add Room
+    </button>
+  </div>
+</nav>
+
+<!-- Add/Edit Room Modal -->
+<div class="modal fade" id="roomModal" tabindex="-1" aria-labelledby="roomModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="roomModalLabel">{{ editingRoom ? 'Edit Room' : 'Add Room' }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="saveRoom()">
+          <div class="mb-3">
+            <label for="roomName" class="form-label">Room Name</label>
+            <input type="text" class="form-control" id="roomName" [(ngModel)]="roomName" name="roomName">
+          </div>
+          <button type="submit" class="btn btn-primary">{{ editingRoom ? 'Save Changes' : 'Add' }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

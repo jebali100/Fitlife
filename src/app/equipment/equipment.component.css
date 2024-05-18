@@ -1,0 +1,42 @@
+.equipment-section {
+    padding: 50px 20px;
+    background-color: #f0f0f0;
+    text-align: center;
+  }
+  
+  .equipment-section h2 {
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  .equipment-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .equipment-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    margin: 10px;
+    text-align: left;
+  }
+  
+  .equipment-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .equipment-card h3 {
+    color: #d9534f;
+    margin-bottom: 10px;
+  }
+  
+  .equipment-card p {
+    color: #666;
+  }
+  

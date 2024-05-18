@@ -1,0 +1,19 @@
+<div class="coach-login-container d-flex justify-content-center align-items-center vh-100">
+    <div class="coach-login-card card shadow-lg p-4">
+      <h2 class="card-title text-center mb-4">Coach Login</h2>
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <div class="mb-3">
+          <label for="coachUsername" class="form-label">Username</label>
+          <input type="text" class="form-control" id="coachUsername" [(ngModel)]="username" name="username" required>
+          <div *ngIf="loginForm.submitted && !username" class="text-danger">Username is required</div>
+        </div>
+        <div class="mb-3">
+          <label for="coachPassword" class="form-label">Password</label>
+          <input type="password" class="form-control" id="coachPassword" [(ngModel)]="password" name="password" required>
+          <div *ngIf="loginForm.submitted && !password" class="text-danger">Password is required</div>
+        </div>
+        <button type="submit" class="btn btn-secondary w-100">Login</button>
+      </form>
+    </div>
+  </div>
+  

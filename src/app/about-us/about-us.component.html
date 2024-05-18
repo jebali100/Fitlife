@@ -1,0 +1,32 @@
+
+
+<app-header></app-header>
+<div class="about-us-container">
+    <h2 class="about-us-title">About Us</h2>
+    
+    <!-- Section de présentation -->
+    <section class="presentation">
+      <h3>Our Gym</h3>
+      <p>Welcome to FitLife Gym! We offer state-of-the-art fitness equipment, a variety of classes, and professional trainers to help you achieve your fitness goals. Our gym is designed to provide a friendly and motivating environment for all fitness levels.</p>
+    </section>
+    
+    <!-- Section des coachs -->
+    <section class="coaches">
+      <h3>Meet Our Coaches</h3>
+      <div class="coaches-grid">
+        <div class="coach-card" *ngFor="let coach of coaches">
+          <img [src]="coach.image" alt="{{coach.firstName}} {{coach.lastName}}" class="coach-image">
+          <div class="coach-info">
+            <h4>{{coach.firstName}} {{coach.lastName}}</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Section adresse -->
+    <section class="address">
+      <h3>Our Address</h3>
+      <p>123 Fitness Ave, Workout City, FitCountry</p>
+    </section>
+  </div>
+  <app-footer></app-footer>

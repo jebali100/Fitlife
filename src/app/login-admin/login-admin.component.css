@@ -1,0 +1,26 @@
+.login-container {
+    background-color: #f8f9fa;
+  }
+  
+  .login-card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    background-color: white;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+  

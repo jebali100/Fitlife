@@ -1,0 +1,127 @@
+<div class="container-fluid p-4">
+  <div class="text-center mb-4">
+    <div class="profile-image-container position-relative mx-auto" style="width: 150px; height: 150px;">
+      <img [src]="profileImage || 'assets/default-profile.png'" alt="Profile Image" class="profile-image img-fluid rounded-circle">
+      <input type="file" (change)="uploadImage($event)" class="profile-image-input">
+    </div>
+    <h3 class="mt-2">{{ coachName }}</h3>
+  </div>
+  
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="display-4"> Welcome Coach </h1>
+    <button class="btn btn-primary" (click)="openAddCourseModal()">
+      <i class="fas fa-plus"></i> Add Course
+    </button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col">Level</th>
+          <th scope="col">Date</th>
+          <th scope="col">Time</th>
+          <th scope="col">Detail</th>
+          <th scope="col">Coach</th>
+          <th scope="col">Members</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let course of courses">
+          <td><img [src]="course.image" alt="Course Image" class="img-fluid" style="max-height: 50px;"></td>
+          <td>{{ course.name }}</td>
+          <td>{{ course.level }}</td>
+          <td>{{ course.date }}</td>
+          <td>{{ course.time }}</td>
+          <td>{{ course.detail }}</td>
+          <td>{{ course.coach }}</td>
+          <td>
+            <button class="btn btn-info btn-sm" (click)="viewMembers(course)">
+              <i class="fas fa-users"></i> View Members
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-warning btn-sm me-2" (click)="openEditCourseModal(course)">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="deleteCourse(course)">
+              <i class="fas fa-trash-alt"></i> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Add/Edit Course Modal -->
+<div class="modal fade" id="courseModal" tabindex="-1" aria-labelledby="courseModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="courseModalLabel">{{ editingCourse ? 'Edit Course' : 'Add Course' }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="saveCourse()">
+          <div class="mb-3">
+            <label for="courseImage" class="form-label">Course Image</label>
+            <input type="file" class="form-control" id="courseImage" (change)="onCourseImageChange($event)" required>
+          </div>
+          <div class="mb-3">
+            <label for="courseName" class="form-label">Course Name</label>
+            <input type="text" class="form-control" id="courseName" [(ngModel)]="courseName" name="courseName" required>
+          </div>
+          <div class="mb-3">
+            <label for="courseLevel" class="form-label">Course Level</label>
+            <input type="text" class="form-control" id="courseLevel" [(ngModel)]="courseLevel" name="courseLevel" required>
+          </div>
+          <div class="mb-3">
+            <label for="courseDate" class="form-label">Course Date</label>
+            <input type="date" class="form-control" id="courseDate" [(ngModel)]="courseDate" name="courseDate" required>
+          </div>
+          <div class="mb-3">
+            <label for="courseTime" class="form-label">Course Time</label>
+            <input type="time" class="form-control" id="courseTime" [(ngModel)]="courseTime" name="courseTime" required>
+          </div>
+          <div class="mb-3">
+            <label for="courseDetail" class="form-label">Course Detail</label>
+            <textarea class="form-control" id="courseDetail" [(ngModel)]="courseDetail" name="courseDetail" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="courseCoach" class="form-label">Coach Name</label>
+            <input type="text" class="form-control" id="courseCoach" [(ngModel)]="courseCoach" name="courseCoach" required>
+          </div>
+          <button type="submit" class="btn btn-primary">{{ editingCourse ? 'Save Changes' : 'Add Course' }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- View Members Modal -->
+<div class="modal fade" id="membersModal" tabindex="-1" aria-labelledby="membersModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="membersModalLabel">Members for {{ selectedCourse?.name }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="selectedCourse && selectedCourse.members?.length; else noMembers">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let member of selectedCourse.members">
+              {{ member.firstName }} {{ member.lastName }} - {{ member.email }}
+            </li>
+          </ul>
+        </div>
+        <ng-template #noMembers>
+          <p>No members have reserved this course yet.</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

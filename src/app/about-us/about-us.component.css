@@ -1,0 +1,104 @@
+.about-us-container {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+    padding-top: 80px;
+  }
+  
+  .about-us-title {
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 2.5em;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+  
+  .about-us-title::after {
+    content: '';
+    width: 60px;
+    height: 4px;
+    background-color: #d9534f;
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .presentation {
+    margin-bottom: 50px;
+  }
+  
+  .presentation h3 {
+    color: #d9534f;
+    font-size: 2em;
+  }
+  
+  .presentation p {
+    color: #666;
+    font-size: 1.2em;
+    line-height: 1.5;
+  }
+  
+  .coaches {
+    margin-bottom: 50px;
+  }
+  
+  .coaches h3 {
+    color: #d9534f;
+    font-size: 2em;
+  }
+  
+  .coaches-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .coach-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px; /* Augmenter la largeur de la carte */
+    height: 350px; /* Ajouter une hauteur fixe pour les cartes */
+    margin: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .coach-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .coach-image {
+    width: 100%;
+    height: 60%; /* Ajuster la hauteur de l'image */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    object-fit: cover; /* Pour s'assurer que l'image couvre entièrement l'espace */
+  }
+  
+  .coach-info {
+    padding: 10px;
+  }
+  
+  .coach-info h4 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .address h3 {
+    color: #d9534f;
+    font-size: 2em;
+  }
+  
+  .address p {
+    color: #666;
+    font-size: 1.2em;
+    line-height: 1.5;
+  }
+  

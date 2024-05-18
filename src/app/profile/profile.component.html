@@ -1,0 +1,38 @@
+
+<app-header></app-header>
+<div class="profile-container container mt-5 p-4 bg-light rounded shadow-sm">
+    <div class="profile-header d-flex align-items-center mb-4">
+      <div class="profile-photo-container">
+        <img [src]="member.photo" alt="Profile Picture" class="profile-photo rounded-circle">
+        <div class="upload-overlay" (click)="fileInput.click()">
+          <span class="upload-text">Changer l'image</span>
+        </div>
+        <input type="file" #fileInput (change)="onFileSelected($event)" class="d-none">
+      </div>
+      <div>
+        <h2>{{ member.name }}</h2>
+      </div>
+    </div>
+  
+    <div class="profile-details">
+      <div class="mb-4">
+        <h3 class="border-bottom pb-2">Mes Cours Réservés</h3>
+        <ul class="list-group">
+          <li *ngFor="let course of reservedCourses" class="list-group-item d-flex justify-content-between align-items-center">
+            {{ course.name }} - {{ course.date | date:'shortDate' }}
+          </li>
+        </ul>
+      </div>
+  
+      <div>
+        <h3 class="border-bottom pb-2">Mes Commandes</h3>
+        <ul class="list-group">
+          <li *ngFor="let order of orders" class="list-group-item d-flex justify-content-between align-items-center">
+            <span>{{ order.productName }}</span>
+            <span>{{ order.status }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
